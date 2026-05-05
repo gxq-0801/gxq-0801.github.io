@@ -69,22 +69,24 @@
 
             /* 搜索按钮 */
             .search .search-btn {
-            height: 100%;
-            padding: 0 25px; 
-            border: 2px solid #ff4400;
-            border-left: none; 
-            border-radius: 0 22px 22px 0; 
-            background-color: #ff4400; 
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            box-sizing: border-box;
-            transition: background-color 0.2s ease;
-            }
+    height: 100%;
+    padding: 0 25px; 
+    border: 2px solid #ff4400;
+    border-left: none; 
+    border-radius: 0 22px 22px 0; 
+    background-color: #ff4400; 
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, transform 0.5s ease;
+}
 
-            .search .search-btn:hover {
-            background-color: #e03a00; 
-            }
+.search .search-btn:hover {
+    background-color: #e03a00;
+    /* 悬停时旋转360度 */
+    transform: rotate(360deg);
+}
 
             /* 提示文字样式 */
             .search input::placeholder {
@@ -167,8 +169,16 @@
             cursor: pointer;
             }
             .cart-icon {
-                font-size: 24px;
-            }
+    font-size: 24px;
+    /* 加上过渡动画，让旋转顺滑 */
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.cart-info:hover .cart-icon {
+    /* 悬停时旋转360度 */
+    transform: rotate(360deg);
+}
             .cart-count {
                 background-color: #ff4400;
                 color: white;
@@ -185,9 +195,9 @@
 
            
 .user-links {
-  position: fixed;
-  top: 25px;
-  right: 140px;  
+  position: absolute;
+  top: 20px;
+  right: 160px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -199,12 +209,16 @@
   color: #333;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .user-links a:hover {
   color: #ff4400;
 }
 
+.user-links .separator {
+  color: #999;
+}
 .user-links .split {
   color: #999;
 }
@@ -285,6 +299,8 @@
 }
 
 /* 登录/注册按钮 */
+/* 登录/注册按钮 */
+/* 登录/注册按钮 */
 .login-btn, .register-btn {
     width: 100%;
     padding: 12px;
@@ -294,8 +310,18 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    /* 加上过渡动画，让渐变和缩放更丝滑 */
+    transition: all 0.3s ease;
 }
 
+/* 按钮悬停效果 */
+.login-btn:hover,
+.register-btn:hover {
+    /* 背景渐变效果 */
+    background: linear-gradient(45deg, #d92121, #ff4400);
+    /* 缩放效果（放大10%，效果更明显） */
+    transform: scale(1.15);
+}
 
 
         .main {
@@ -410,8 +436,8 @@
             width: 720px;
             margin: 0 20px;  
         }
-        /* 轮播容器 */
-.banner-carousel {
+        
+        .banner-carousel {
   position: relative;
   width: 100%;
   max-width: 1200px; 
@@ -422,15 +448,15 @@
 }
 
 
-.carousel-track {
+ /* .carousel-track {
   display: flex;
   width: 100%;
   height: 100%;
   transition: transform 0.6s ease-in-out; 
-}
+}  */
 
 /* 单张图片 */
-.carousel-slide {
+/* .carousel-slide {
   min-width: 100%;
   height: 100%;
 }
@@ -442,10 +468,10 @@
   display: block;
   object-fit: cover;
   
-}
+} */
 
 /* 左右箭头按钮 */
-.carousel-arrow {
+/* .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -469,8 +495,58 @@
 }
 
 .prev-arrow { left: 15px; }
-.next-arrow { right: 15px; }
-       
+.next-arrow { right: 15px; }  */
+  /* 外层可视窗口：只显示一张图 */
+.banner-carousel {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    margin: 0 auto;
+    overflow: hidden; /* 超出部分隐藏 */
+}
+
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 1050px; 
+    animation: slideUp 9s infinite linear;
+}
+
+
+.carousel-slide {
+    width: 100%;
+    height: 350px;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+@keyframes slideUp {
+    0%, 30% {
+        top: 0;
+    }
+    
+    33%, 63% {
+        top: -350px;
+    }
+    
+    66%, 96% {
+        top: -700px;
+    }
+    
+    100% {
+        top: 0;
+    }
+}
+
+
+
         .hot-book {
             background-color: #fff;
             border-radius: 8px;
